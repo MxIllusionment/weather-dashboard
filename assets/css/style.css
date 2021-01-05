@@ -9,6 +9,11 @@ h1 {
   padding: 1rem 0;
 }
 
+/* Utility class to hide an element */
+.hidden {
+  display: none;
+}
+
 /* Sidebar with search and history */
 #search-col {
   background-color: #f5f5f5f5;
@@ -31,6 +36,7 @@ h1 {
   padding: 0.5rem 2rem;
   border: 1px solid #ddd;
   border-radius: 4px;
+  cursor:pointer;
 }
 
 .past-city:hover {
