@@ -111,11 +111,13 @@ function queryOneCall(lon, lat) {
   $.ajax({
     url: queryURL,
     method: "GET"
-  }).then(function (response) {
+  }).done(function (response) {
     updateUVI(parseFloat(response.current.uvi));
     for (var i = 0; i < 5; i++) {
       updateForecast(i + 1, response.daily[i]);
     }
+    /* Display results */
+    $("#result-col").removeClass("hidden");
   });
 }
 
@@ -124,11 +126,13 @@ function queryOneCall(lon, lat) {
 function queryCity(city) {
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherKey;
 
+  /* Hide results */
+  $("#result-col").addClass("hidden");
+
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function (response) {
-    $("#result-col").removeClass("hidden");
     $("#current-date").text(moment().format("M/D/YYYY"));
     $("#current-city").text(response.name);
     $("#current-temp").text(parseFloat(response.main.temp).toFixed(1));
