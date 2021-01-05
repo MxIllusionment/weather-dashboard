@@ -70,6 +70,7 @@ function updateUVI(uvi) {
   var uviFloat = parseFloat(uvi);
   var bgColor;
   var textColor = "white";
+
   $("#current-uvi").text(uvi);
   if (uviFloat < 3) {
     bgColor = uviColors.low;
@@ -87,14 +88,19 @@ function updateUVI(uvi) {
   $("#current-uvi").css("color", textColor);
 }
 
-/* TODO: Updates the forecast info for a particular day */
+/* Updates the forecast info for a particular day */
 function updateForecast(day, data) {
+  var div = $("#forecast-day-" + day);
 
+  div.children(".fc-date").text(moment().add(day, "days").format("M/D/YYYY"));
+  div.children(".fc-icon").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
+  div.find(".fc-temp").text(data.temp.day);
+  div.find(".fc-humid").text(data.humidity);
 }
 
 /* Queries Open Weather "One Call" to retrieve UVI and 5-day forecast */
 function queryOneCall(lon, lat) {
-  var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly,alerts&appid=" + weatherKey;
+  var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly,alerts&appid=" + weatherKey;
 
   $.ajax({
     url: queryURL,
