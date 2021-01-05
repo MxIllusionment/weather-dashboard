@@ -61,7 +61,6 @@ function cityFromInput(event) {
   if (city !== "") {
     $("#city-input").val("");
     queryCity(city);
-    saveCity(city);
   }
 }
 
@@ -112,14 +111,15 @@ function queryOneCall(lon, lat) {
   });
 }
 
-/* Queries a city and updates the current weather. It then queries the lat/lon of that city for UVI and forecase */
+/* Queries a city and updates the current weather. It then queries the lat/lon of that city for UVI and forecase.
+   The city is saved to history if the query was successful. */
 function queryCity(city) {
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherKey;
 
   $.ajax({
     url: queryURL,
     method: "GET"
-  }).then(function (response) {
+  }).done(function (response) {
     $("#result-col").removeClass("hidden");
     $("#current-date").text(moment().format("M/D/YYYY"));
     $("#current-city").text(response.name);
@@ -130,6 +130,8 @@ function queryCity(city) {
 
     /* Use lat/lon to query UVI and 5-day forecast */
     queryOneCall(response.coord.lon, response.coord.lat);
+
+    saveCity(city);
   });
 }
 
