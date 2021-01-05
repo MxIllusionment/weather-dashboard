@@ -39,12 +39,19 @@ function loadHistory() {
 
 /* Saves city to history */
 function saveCity(city) {
-  if (cityHistory.indexOf(city) === -1) {
-    cityHistory.unshift(city);
-    cityHistory = cityHistory.slice(0, maxHistory);
-    localStorage.setItem("past-cities", JSON.stringify(cityHistory));
-    renderHistory();
+  var cityIndex = cityHistory.indexOf(city);
+
+  /* Remove city from history if already present */
+  if (cityIndex !== -1) {
+    cityHistory.splice(cityIndex, 1);
   }
+  /* Add city to front of list */
+  cityHistory.unshift(city);
+  /* Trim history to limit */
+  cityHistory = cityHistory.slice(0, maxHistory);
+  /* Save history to storage */
+  localStorage.setItem("past-cities", JSON.stringify(cityHistory));
+  renderHistory();
 }
 
 /* Queries weather from history */
@@ -131,7 +138,7 @@ function queryCity(city) {
     /* Use lat/lon to query UVI and 5-day forecast */
     queryOneCall(response.coord.lon, response.coord.lat);
 
-    saveCity(city);
+    saveCity(response.name);
   });
 }
 
