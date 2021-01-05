@@ -121,7 +121,7 @@ function queryCity(city) {
     $("#current-temp").text(response.main.temp);
     $("#current-humid").text(response.main.humidity);
     $("#current-wind").text(response.wind.speed);
-    $("#current-icon").attr("src", "http://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
+    $("#current-icon").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
 
     /* Use lat/lon to query UVI and 5-day forecast */
     queryOneCall(response.coord.lon, response.coord.lat);
