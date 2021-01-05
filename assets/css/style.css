@@ -45,7 +45,6 @@ h1 {
 
 /* Current UV index */
 #current-uvi {
-  background-color: #dc3545;
   color: white;
   border-radius: 4px;
   padding: 0.1rem 0.3rem;
