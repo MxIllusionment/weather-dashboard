@@ -109,7 +109,7 @@ function queryOneCall(lon, lat) {
 
 /* Queries a city and updates the current weather. It then queries the lat/lon of that city for UVI and forecase */
 function queryCity(city) {
-  var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherKey;
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherKey;
 
   $.ajax({
     url: queryURL,
