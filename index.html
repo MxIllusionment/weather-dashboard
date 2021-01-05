@@ -21,16 +21,13 @@
     <div class="row h-100">
       <!-- Search column containing search input and search history -->
       <div id="search-col" class="col-6 col-lg-3 pl-2 pr-2">
-        <div class="input-group mt-2 mb-3">
-          <input type="text" class="form-control" placeholder="City">
+        <form class="input-group mt-2 mb-3">
+          <input type="text" id="city-input" class="form-control" placeholder="City">
           <div class="input-group-append">
-            <button id="search-btn" class="btn" type="button"><i class="fa fa-search"></i></button>
+            <button id="search-btn" class="btn" type="submit"><i class="fa fa-search"></i></button>
           </div>
-        </div>
+        </form>
         <div id="history-container" class="mb-3">
-          <div class="past-city">Chapel Hill</div>
-          <div class="past-city">Durham</div>
-          <div class="past-city">Raleigh</div>
         </div>
       </div>
 
