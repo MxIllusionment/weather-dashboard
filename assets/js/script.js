@@ -126,13 +126,12 @@ function queryOneCall(lon, lat) {
 function queryCity(city) {
   var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + weatherKey;
 
-  /* Hide results */
-  $("#result-col").addClass("hidden");
-
   $.ajax({
     url: queryURL,
     method: "GET"
   }).done(function (response) {
+    /* Hide results */
+    $("#result-col").addClass("hidden");
     $("#current-date").text(moment().format("M/D/YYYY"));
     $("#current-city").text(response.name);
     $("#current-temp").text(parseFloat(response.main.temp).toFixed(1));
