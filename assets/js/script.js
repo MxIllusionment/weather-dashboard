@@ -93,7 +93,7 @@ function updateForecast(day, data) {
 
   div.children(".fc-date").text(moment().add(day, "days").format("M/D/YYYY"));
   div.children(".fc-icon").attr("src", "https://openweathermap.org/img/wn/" + data.weather[0].icon + ".png");
-  div.find(".fc-temp").text(data.temp.day);
+  div.find(".fc-temp").text(parseFloat(data.temp.day).toFixed(1));
   div.find(".fc-humid").text(data.humidity);
 }
 
@@ -123,7 +123,7 @@ function queryCity(city) {
     $("#result-col").removeClass("hidden");
     $("#current-date").text(moment().format("M/D/YYYY"));
     $("#current-city").text(response.name);
-    $("#current-temp").text(response.main.temp);
+    $("#current-temp").text(parseFloat(response.main.temp).toFixed(1));
     $("#current-humid").text(response.main.humidity);
     $("#current-wind").text(response.wind.speed);
     $("#current-icon").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + ".png");
