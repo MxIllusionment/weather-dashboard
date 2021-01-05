@@ -63,10 +63,11 @@ function cityFromHistory() {
 /* Queries weather from input field and saves city to history */
 function cityFromInput(event) {
   event.preventDefault();
-  var city = $("#city-input").val();
+  var city = $("#city-input").val().trim();
+
+  $("#city-input").val("");
 
   if (city !== "") {
-    $("#city-input").val("");
     queryCity(city);
   }
 }
