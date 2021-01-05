@@ -67,19 +67,18 @@ function cityFromInput(event) {
 
 /* Updates UVI entry with text and color */
 function updateUVI(uvi) {
-  var uviFloat = parseFloat(uvi);
   var bgColor;
   var textColor = "white";
 
   $("#current-uvi").text(uvi);
-  if (uviFloat < 3) {
+  if (uvi < 3) {
     bgColor = uviColors.low;
-  } else if (uviFLoat < 6) {
+  } else if (uvi < 6) {
     bgColor = uviColors.moderate;
     textColor = "black";
-  } else if (uviFloat < 8) {
+  } else if (uvi < 8) {
     bgColor = uviColors.high;
-  } else if (uviFLoat < 11) {
+  } else if (uvi < 11) {
     bgColor = uviColors.veryHigh;
   } else {
     bgColor = uviColors.extreme;
@@ -106,7 +105,7 @@ function queryOneCall(lon, lat) {
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    updateUVI(response.current.uvi);
+    updateUVI(parseFloat(response.current.uvi));
     for (var i = 0; i < 5; i++) {
       updateForecast(i + 1, response.daily[i]);
     }
